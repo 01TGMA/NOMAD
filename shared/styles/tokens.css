@@ -1,0 +1,32 @@
+/* Nomad — design tokens
+   Palette is fixed by brief: black, neon-lime, white.
+   Values chosen for outdoor mobile legibility (high glare, small screens). */
+
+:root {
+  /* Surfaces */
+  --nomad-black: #060606;
+  --nomad-black-elevated: #111111;
+  --nomad-black-inset: #0c0c0c;
+
+  /* Accent — true neon lime, used sparingly (data, live states, CTAs) */
+  --nomad-lime: #ccff00;
+  --nomad-lime-dim: #6b8500;
+  --nomad-lime-glow: rgba(204, 255, 0, 0.18);
+
+  /* Text */
+  --nomad-white: #f5f5f5;
+  --nomad-grey: #8a8a8a;
+  --nomad-grey-dim: #4a4a4a;
+
+  /* Structural */
+  --nomad-border: rgba(204, 255, 0, 0.14);
+  --nomad-border-strong: rgba(204, 255, 0, 0.32);
+
+  /* Type */
+  --font-display: "Archivo Black", "Arial Black", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-body: "Inter", -apple-system, sans-serif;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}

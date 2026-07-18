@@ -1,0 +1,350 @@
+/* Nomad — trader dashboard styles
+   Design language: vehicle-dashboard gauge + thermal-receipt feed.
+   Grounded in the daily visual world of traders, mechanics, okada riders. */
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--nomad-black);
+  color: var(--nomad-white);
+  font-family: var(--font-body);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 20px 16px 40px;
+  min-height: 100vh;
+}
+
+/* ── Header ─────────────────────────────── */
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 2px 24px;
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-size: 20px;
+  letter-spacing: 0.06em;
+  color: var(--nomad-white);
+}
+
+.live-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--nomad-lime);
+}
+
+.live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--nomad-lime);
+  box-shadow: 0 0 8px var(--nomad-lime);
+  animation: pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+/* ── Gauge card ─────────────────────────── */
+
+.gauge-card {
+  background: var(--nomad-black-elevated);
+  border: 1px solid var(--nomad-border);
+  border-radius: 20px;
+  padding: 24px 20px 20px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.gauge-svg {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  overflow: visible;
+}
+
+.gauge-track {
+  fill: none;
+  stroke: var(--nomad-grey-dim);
+  stroke-width: 10;
+  stroke-linecap: round;
+}
+
+.gauge-redline {
+  fill: none;
+  stroke: var(--nomad-lime-dim);
+  stroke-width: 10;
+  stroke-linecap: round;
+}
+
+.gauge-tick {
+  stroke: var(--nomad-grey);
+  stroke-width: 2;
+}
+
+.gauge-tick-label {
+  fill: var(--nomad-grey);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-anchor: middle;
+}
+
+.gauge-needle-group {
+  transform-origin: 150px 170px;
+  transition: transform 0.9s var(--ease-out);
+}
+
+.gauge-needle {
+  stroke: var(--nomad-lime);
+  stroke-width: 4;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 6px var(--nomad-lime-glow));
+}
+
+.gauge-hub {
+  fill: var(--nomad-white);
+}
+
+.gauge-readout {
+  margin-top: 4px;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
+}
+
+.gauge-score {
+  font-family: var(--font-display);
+  font-size: 40px;
+  color: var(--nomad-lime);
+  line-height: 1;
+  transition: color 0.4s var(--ease-out);
+}
+
+.gauge-max {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--nomad-grey);
+}
+
+.gauge-status {
+  margin-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--nomad-grey);
+  letter-spacing: 0.02em;
+}
+
+.gauge-status.qualified {
+  color: var(--nomad-lime);
+}
+
+/* ── Account card ───────────────────────── */
+
+.account-card {
+  background: var(--nomad-black-elevated);
+  border: 1px solid var(--nomad-border);
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.account-card-qr {
+  background: var(--nomad-white);
+  padding: 10px;
+  border-radius: 12px;
+  line-height: 0;
+}
+
+.account-card-details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.account-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--nomad-border);
+  padding-bottom: 10px;
+}
+
+.account-field:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.account-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--nomad-grey);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.account-value {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--nomad-white);
+}
+
+.account-number {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--nomad-lime);
+  cursor: pointer;
+  letter-spacing: 0.03em;
+}
+
+.account-number:active {
+  opacity: 0.6;
+}
+
+.account-hint {
+  margin: 0;
+  font-size: 12px;
+  color: var(--nomad-grey);
+  text-align: center;
+}
+
+/* ── Receipt-style transaction feed ─────── */
+
+.receipt-card {
+  background: var(--nomad-black-elevated);
+  border: 1px solid var(--nomad-border);
+  border-radius: 20px;
+  padding: 20px 20px 12px;
+}
+
+.receipt-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--nomad-white);
+}
+
+.receipt-count {
+  color: var(--nomad-grey);
+  font-weight: 400;
+}
+
+.receipt-perforation {
+  height: 1px;
+  margin: 14px 0;
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--nomad-border-strong) 0,
+    var(--nomad-border-strong) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+}
+
+.receipt-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--nomad-grey-dim);
+  font-family: var(--font-mono);
+  animation: print-in 0.4s var(--ease-out);
+}
+
+.receipt-row:last-child {
+  border-bottom: none;
+}
+
+@keyframes print-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.receipt-amount {
+  color: var(--nomad-lime);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.receipt-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.receipt-label {
+  font-size: 11px;
+  color: var(--nomad-grey);
+  letter-spacing: 0.04em;
+}
+
+.receipt-time {
+  font-size: 10px;
+  color: var(--nomad-grey-dim);
+}
+
+.receipt-empty {
+  padding: 20px 4px 8px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--nomad-grey);
+  display: none;
+}
+
+.receipt-empty.visible {
+  display: block;
+}
+
+/* ── Accessibility ──────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .gauge-needle-group,
+  .gauge-score,
+  .receipt-row,
+  .live-dot {
+    transition: none;
+    animation: none;
+  }
+}
+
+button:focus-visible,
+.account-number:focus-visible {
+  outline: 2px solid var(--nomad-lime);
+  outline-offset: 3px;
+}

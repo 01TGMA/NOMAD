@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Nomad — Your Account</title>
+  <meta name="theme-color" content="#060606" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../shared/styles/tokens.css" />
+  <link rel="stylesheet" href="trader.css" />
+</head>
+<body>
+
+  <div class="app">
+
+    <!-- ── Header ───────────────────────────── -->
+    <header class="app-header">
+      <span class="wordmark">NOMAD</span>
+      <span class="live-indicator" id="liveIndicator">
+        <span class="live-dot"></span> LIVE
+      </span>
+    </header>
+
+    <!-- ── Score gauge (signature element) ─────
+         Speedometer-style dial: familiar to traders from vehicle
+         dashboards. Redline zone marks the loan-qualification threshold. -->
+    <section class="gauge-card" aria-label="Your credit score">
+      <svg id="gaugeSvg" viewBox="0 0 300 190" class="gauge-svg" role="img" aria-labelledby="gaugeTitle">
+        <title id="gaugeTitle">Credit score gauge</title>
+
+        <!-- Track -->
+        <path class="gauge-track" d="M 30 170 A 120 120 0 0 1 270 170" />
+
+        <!-- Redline zone (loan-qualified region), drawn via JS to match threshold -->
+        <path id="gaugeRedline" class="gauge-redline" d="" />
+
+        <!-- Tick marks -->
+        <g id="gaugeTicks"></g>
+
+        <!-- Needle -->
+        <g id="gaugeNeedle" class="gauge-needle-group">
+          <line x1="150" y1="170" x2="150" y2="60" class="gauge-needle" />
+          <circle cx="150" cy="170" r="7" class="gauge-hub" />
+        </g>
+      </svg>
+
+      <div class="gauge-readout">
+        <span class="gauge-score" id="gaugeScore">--</span>
+        <span class="gauge-max">/ 100</span>
+      </div>
+      <div class="gauge-status" id="gaugeStatus">Loading your score…</div>
+    </section>
+
+    <!-- ── Account card ─────────────────────── -->
+    <section class="account-card">
+      <div class="account-card-qr" id="qrContainer" aria-label="QR code to your Nomad account"></div>
+
+      <div class="account-card-details">
+        <div class="account-field">
+          <span class="account-label">Account number</span>
+          <button class="account-number" id="accountNumberBtn" type="button">
+            <span id="accountNumberText">••••••••••</span>
+          </button>
+        </div>
+        <div class="account-field">
+          <span class="account-label">Bank</span>
+          <span class="account-value" id="accountBankName">—</span>
+        </div>
+      </div>
+
+      <p class="account-hint" id="copyHint">Tap the account number to copy it</p>
+    </section>
+
+    <!-- ── Transaction feed (receipt style) ─── -->
+    <section class="receipt-card" aria-label="Recent sales">
+      <div class="receipt-heading">
+        <span>RECENT SALES</span>
+        <span class="receipt-count" id="receiptCount">0 today</span>
+      </div>
+      <div class="receipt-perforation"></div>
+      <ul class="receipt-list" id="receiptList">
+        <!-- rows injected by trader.js -->
+      </ul>
+      <div class="receipt-empty" id="receiptEmpty">
+        No sales yet — share your account number or QR code to get started.
+      </div>
+    </section>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script type="module" src="trader.js"></script>
+</body>
+</html>
