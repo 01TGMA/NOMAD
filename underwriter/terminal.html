@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nomad — Underwriting Terminal</title>
+  <meta name="theme-color" content="#060606" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../shared/styles/tokens.css" />
+  <link rel="stylesheet" href="terminal.css" />
+</head>
+<body>
+
+  <div class="term">
+
+    <!-- ── Header ───────────────────────────── -->
+    <header class="term-header">
+      <span class="term-wordmark">NOMAD <span class="term-wordmark-dim">// UNDERWRITING</span></span>
+      <div class="term-header-right">
+        <span class="live-indicator" id="liveIndicator"><span class="live-dot"></span> LIVE</span>
+        <span class="term-clock" id="termClock">00:00:00</span>
+      </div>
+    </header>
+
+    <!-- ── Ticker tape (signature element) ───
+         Borrowed from trading-floor tickers: every settled transaction
+         across every trader scrolls past, with the score delta it caused. -->
+    <div class="ticker" aria-label="Live transaction ticker">
+      <div class="ticker-track" id="tickerTrack">
+        <span class="ticker-empty">Waiting for transactions…</span>
+      </div>
+    </div>
+
+    <!-- ── Ledger ───────────────────────────── -->
+    <main class="term-main">
+      <section class="ledger-card">
+        <div class="ledger-toolbar">
+          <span class="ledger-title">TRADER LEDGER</span>
+          <span class="ledger-count" id="ledgerCount">0 traders</span>
+        </div>
+
+        <div class="ledger-table-wrap">
+          <table class="ledger-table">
+            <thead>
+              <tr>
+                <th>Trader</th>
+                <th>Score</th>
+                <th class="col-num">Vol</th>
+                <th class="col-num">Cons</th>
+                <th class="col-num">Vel</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="ledgerBody">
+              <!-- rows injected by terminal.js -->
+            </tbody>
+          </table>
+          <div class="ledger-empty" id="ledgerEmpty">No traders onboarded yet.</div>
+        </div>
+      </section>
+
+      <!-- ── Loan panel ─────────────────────── -->
+      <section class="loan-panel" id="loanPanel" aria-label="Loan disbursement panel">
+        <div class="loan-panel-empty" id="loanPanelEmpty">
+          Select a trader from the ledger to review and disburse.
+        </div>
+
+        <div class="loan-panel-content" id="loanPanelContent" hidden>
+          <div class="loan-panel-header">
+            <span class="loan-panel-name" id="loanTraderName">—</span>
+            <span class="loan-panel-badge" id="loanTraderBadge">—</span>
+          </div>
+
+          <div class="loan-metric-grid">
+            <div class="loan-metric">
+              <span class="loan-metric-label">SCORE</span>
+              <span class="loan-metric-value" id="loanScoreValue">--</span>
+            </div>
+            <div class="loan-metric">
+              <span class="loan-metric-label">VOLUME</span>
+              <span class="loan-metric-value" id="loanVolumeValue">--</span>
+            </div>
+            <div class="loan-metric">
+              <span class="loan-metric-label">CONSISTENCY</span>
+              <span class="loan-metric-value" id="loanConsistencyValue">--</span>
+            </div>
+            <div class="loan-metric">
+              <span class="loan-metric-label">VELOCITY</span>
+              <span class="loan-metric-value" id="loanVelocityValue">--</span>
+            </div>
+          </div>
+
+          <label class="loan-input-label" for="loanAmountInput">Advance amount (NGN)</label>
+          <input class="loan-input" id="loanAmountInput" type="number" min="1000" step="500" value="40000" />
+
+          <button class="loan-disburse-btn" id="loanDisburseBtn" type="button">
+            DISBURSE ADVANCE
+          </button>
+
+          <p class="loan-status" id="loanStatusMsg"></p>
+        </div>
+      </section>
+    </main>
+
+  </div>
+
+  <script type="module" src="terminal.js"></script>
+</body>
+</html>
