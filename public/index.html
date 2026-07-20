@@ -86,13 +86,5 @@
     </div>
   </div>
 
-  <script>
-    if ("serviceWorker" in navigator) {
-      // Single registration point — see the note at the top of sw.js.
-      navigator.serviceWorker.register("/public/sw.js").catch((err) => {
-        console.error("Service worker registration failed", err);
-      });
-    }
-  </script>
 </body>
 </html>
