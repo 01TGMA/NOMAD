@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nomad — Sign In</title>
+  <meta name="theme-color" content="#060606" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../shared/styles/tokens.css" />
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--nomad-black);
+      color: var(--nomad-white);
+      font-family: var(--font-body);
+    }
+    .login {
+      max-width: 380px;
+      margin: 0 auto;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 32px;
+    }
+    .login-wordmark {
+      font-family: var(--font-display);
+      font-size: 26px;
+      letter-spacing: 0.05em;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .login-sub {
+      text-align: center;
+      color: var(--nomad-grey);
+      font-size: 13px;
+      margin: 0 0 28px;
+    }
+    .login-label {
+      display: block;
+      font-size: 12px;
+      color: var(--nomad-grey);
+      margin-bottom: 6px;
+    }
+    .login-input {
+      width: 100%;
+      background: var(--nomad-black-elevated);
+      border: 1px solid var(--nomad-border);
+      border-radius: 10px;
+      color: var(--nomad-white);
+      font-size: 15px;
+      padding: 12px 14px;
+      margin-bottom: 16px;
+    }
+    .login-input:focus { outline: none; border-color: var(--nomad-lime); }
+    .login-btn {
+      width: 100%;
+      background: var(--nomad-lime);
+      color: var(--nomad-black);
+      border: none;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 14px;
+      cursor: pointer;
+      margin-top: 6px;
+    }
+    .login-btn:disabled { background: var(--nomad-grey-dim); color: var(--nomad-grey); }
+    .login-error {
+      font-size: 12px;
+      color: #ff6b6b;
+      min-height: 16px;
+      margin: 10px 0 0;
+      text-align: center;
+    }
+    .login-footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 13px;
+      color: var(--nomad-grey);
+    }
+    .login-footer a { color: var(--nomad-lime); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="login">
+    <div class="login-wordmark">NOMAD</div>
+    <p class="login-sub">Sign in to your dashboard</p>
+
+    <label class="login-label" for="loginEmail">Email</label>
+    <input class="login-input" id="loginEmail" type="email" placeholder="you@example.com" />
+
+    <label class="login-label" for="loginPassword">Password</label>
+    <input class="login-input" id="loginPassword" type="password" placeholder="Your password" />
+
+    <button class="login-btn" id="loginBtn" type="button">Sign in</button>
+    <p class="login-error" id="loginError"></p>
+
+    <p class="login-footer">
+      New trader? <a href="../onboarding/onboarding.html">Get started</a>
+    </p>
+  </div>
+
+  <script type="module" src="login.js"></script>
+</body>
+</html>

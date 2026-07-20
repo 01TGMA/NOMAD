@@ -12,6 +12,12 @@ let tradersById = new Map(); // profile_id -> { name, score, volume, consistency
 init();
 
 async function init() {
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) {
+    window.location.href = "../auth/login.html";
+    return;
+  }
+
   startClock();
   await loadLedger();
   subscribeToLiveUpdates();
@@ -169,14 +175,20 @@ function wireDisburseButton() {
       return;
     }
 
-    // NOTE: destination bank details would normally come from the trader's
-    // verified profile (populated by verify-trader). Wire those fields in
-    // once verify-trader results are stored on the profile.
+    // Destination is the trader's OWN bank account (set during onboarding
+    // via verify-trader), NOT the Monnify reserved account — that reserved
+    // account only collects incoming sales, it can't receive a disbursement.
     const { data: profile } = await supabase
       .from("profiles")
-      .select("monnify_account_number, monnify_bank_name")
+      .select("disbursement_account_number, disbursement_bank_code")
       .eq("id", selectedProfileId)
       .single();
+
+    if (!profile?.disbursement_account_number || !profile?.disbursement_bank_code) {
+      statusEl.textContent = "This trader hasn't completed bank verification yet.";
+      statusEl.className = "loan-status error";
+      return;
+    }
 
     btn.disabled = true;
     statusEl.textContent = "Sending disbursement request…";
@@ -186,8 +198,8 @@ function wireDisburseButton() {
       body: {
         profile_id: selectedProfileId,
         amount,
-        destination_bank_code: profile?.monnify_bank_code, // populate this field during onboarding
-        destination_account_number: profile?.monnify_account_number,
+        destination_bank_code: profile.disbursement_bank_code,
+        destination_account_number: profile.disbursement_account_number,
       },
     });
 

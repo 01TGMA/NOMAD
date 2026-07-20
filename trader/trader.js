@@ -18,9 +18,7 @@ init();
 async function init() {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) {
-    // Not authenticated — in production, redirect to a login screen.
-    console.warn("No authenticated user; showing empty state.");
-    renderEmptyState();
+    window.location.href = "../auth/login.html";
     return;
   }
   currentProfileId = user.id;
@@ -325,9 +323,4 @@ function formatRelativeTime(isoString) {
   if (hours < 24) return `${hours}h ago`;
   const days = Math.floor(hours / 24);
   return `${days}d ago`;
-}
-
-function renderEmptyState() {
-  document.getElementById("gaugeStatus").textContent = "Sign in to see your score";
-  document.getElementById("receiptEmpty").classList.add("visible");
 }

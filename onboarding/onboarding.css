@@ -1,0 +1,181 @@
+/* Nomad — onboarding styles */
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--nomad-black);
+  color: var(--nomad-white);
+  font-family: var(--font-body);
+}
+
+.ob {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+  min-height: 100vh;
+}
+
+.ob-header {
+  padding: 8px 0 20px;
+}
+
+.ob-wordmark {
+  font-family: var(--font-display);
+  font-size: 20px;
+  letter-spacing: 0.06em;
+}
+
+/* ── Step indicator ─────────────────────── */
+
+.ob-steps {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--nomad-grey);
+}
+
+.ob-step.active {
+  color: var(--nomad-lime);
+}
+
+.ob-step.complete {
+  color: var(--nomad-white);
+}
+
+/* ── Card / panels ──────────────────────── */
+
+.ob-card {
+  background: var(--nomad-black-elevated);
+  border: 1px solid var(--nomad-border);
+  border-radius: 20px;
+  padding: 24px 20px;
+}
+
+.ob-title {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 18px;
+}
+
+.ob-label {
+  display: block;
+  font-size: 12px;
+  color: var(--nomad-grey);
+  margin-bottom: 6px;
+}
+
+.ob-input {
+  width: 100%;
+  background: var(--nomad-black-inset);
+  border: 1px solid var(--nomad-border);
+  border-radius: 10px;
+  color: var(--nomad-white);
+  font-family: var(--font-body);
+  font-size: 15px;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+}
+
+.ob-input:focus {
+  outline: none;
+  border-color: var(--nomad-lime);
+}
+
+select.ob-input {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--nomad-grey) 50%),
+    linear-gradient(135deg, var(--nomad-grey) 50%, transparent 50%);
+  background-position: calc(100% - 18px) center, calc(100% - 13px) center;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+
+.ob-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  padding: 14px;
+  cursor: pointer;
+}
+
+.ob-btn.primary {
+  background: var(--nomad-lime);
+  color: var(--nomad-black);
+}
+
+.ob-btn.primary:disabled {
+  background: var(--nomad-grey-dim);
+  color: var(--nomad-grey);
+  cursor: not-allowed;
+}
+
+.ob-btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.ob-hint {
+  font-size: 12px;
+  color: var(--nomad-grey);
+  margin: 10px 0 0;
+  line-height: 1.5;
+}
+
+.ob-error {
+  font-size: 12px;
+  color: #ff6b6b;
+  margin: 10px 0 0;
+  min-height: 14px;
+}
+
+.ob-verified {
+  font-size: 13px;
+  color: var(--nomad-lime);
+  margin: 10px 0 0;
+  font-family: var(--font-mono);
+}
+
+/* ── Final account box ──────────────────── */
+
+.ob-account-box {
+  background: var(--nomad-black-inset);
+  border: 1px solid var(--nomad-border);
+  border-radius: 12px;
+  padding: 18px;
+  margin: 18px 0;
+  text-align: center;
+}
+
+.ob-account-label {
+  display: block;
+  font-size: 11px;
+  color: var(--nomad-grey);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.ob-account-number {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--nomad-lime);
+  margin: 6px 0 4px;
+}
+
+.ob-account-bank {
+  display: block;
+  font-size: 13px;
+  color: var(--nomad-white);
+}

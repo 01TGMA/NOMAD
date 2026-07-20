@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nomad — Get Started</title>
+  <meta name="theme-color" content="#060606" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../shared/styles/tokens.css" />
+  <link rel="stylesheet" href="onboarding.css" />
+</head>
+<body>
+
+  <div class="ob">
+    <header class="ob-header">
+      <span class="ob-wordmark">NOMAD</span>
+    </header>
+
+    <!-- Step indicator -->
+    <div class="ob-steps" id="obSteps">
+      <span class="ob-step active" data-step="1">1. Account</span>
+      <span class="ob-step" data-step="2">2. Business</span>
+      <span class="ob-step" data-step="3">3. Bank</span>
+      <span class="ob-step" data-step="4">4. Done</span>
+    </div>
+
+    <main class="ob-card">
+
+      <!-- ── Step 1: Sign up ─────────────────── -->
+      <section class="ob-panel" data-panel="1">
+        <h2 class="ob-title">Create your account</h2>
+        <label class="ob-label" for="signupEmail">Email</label>
+        <input class="ob-input" id="signupEmail" type="email" placeholder="you@example.com" />
+
+        <label class="ob-label" for="signupPassword">Password</label>
+        <input class="ob-input" id="signupPassword" type="password" placeholder="At least 8 characters" />
+
+        <button class="ob-btn primary" id="step1NextBtn" type="button">Continue</button>
+        <p class="ob-error" id="step1Error"></p>
+      </section>
+
+      <!-- ── Step 2: Business details ─────────── -->
+      <section class="ob-panel" data-panel="2" hidden>
+        <h2 class="ob-title">Tell us about your business</h2>
+        <label class="ob-label" for="businessName">Business / stall name</label>
+        <input class="ob-input" id="businessName" type="text" placeholder="e.g. Adaeze Textiles" />
+
+        <label class="ob-label" for="businessPhone">Phone number</label>
+        <input class="ob-input" id="businessPhone" type="tel" placeholder="+234…" />
+
+        <button class="ob-btn primary" id="step2NextBtn" type="button">Continue</button>
+        <p class="ob-hint">This creates your Monnify collection account — the account your customers will pay into.</p>
+        <p class="ob-error" id="step2Error"></p>
+      </section>
+
+      <!-- ── Step 3: Bank verification (for disbursement) ── -->
+      <section class="ob-panel" data-panel="3" hidden>
+        <h2 class="ob-title">Where should we send loan advances?</h2>
+        <p class="ob-hint">This is your own bank account — separate from the collection account above. We'll verify it before any advance is sent.</p>
+
+        <label class="ob-label" for="bankSelect">Bank</label>
+        <select class="ob-input" id="bankSelect">
+          <option value="">Loading banks…</option>
+        </select>
+
+        <label class="ob-label" for="bankAccountNumber">Account number</label>
+        <input class="ob-input" id="bankAccountNumber" type="text" inputmode="numeric" maxlength="10" placeholder="10-digit account number" />
+
+        <button class="ob-btn primary" id="step3NextBtn" type="button">Verify account</button>
+        <p class="ob-verified" id="verifiedName" hidden></p>
+        <p class="ob-error" id="step3Error"></p>
+      </section>
+
+      <!-- ── Step 4: Done ──────────────────────── -->
+      <section class="ob-panel" data-panel="4" hidden>
+        <h2 class="ob-title">You're all set</h2>
+        <p class="ob-hint">Share this account number to start collecting sales — every payment builds your credit score.</p>
+
+        <div class="ob-account-box">
+          <span class="ob-account-label">Account number</span>
+          <span class="ob-account-number" id="finalAccountNumber">—</span>
+          <span class="ob-account-bank" id="finalBankName">—</span>
+        </div>
+
+        <a class="ob-btn primary ob-link" id="goToDashboardBtn" href="../trader/trader.html">Go to your dashboard</a>
+      </section>
+
+    </main>
+  </div>
+
+  <script type="module" src="onboarding.js"></script>
+</body>
+</html>

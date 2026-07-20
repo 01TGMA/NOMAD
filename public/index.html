@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nomad</title>
+  <meta name="theme-color" content="#060606" />
+  <link rel="manifest" href="manifest.json" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../shared/styles/tokens.css" />
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      height: 100%;
+      background: var(--nomad-black);
+      color: var(--nomad-white);
+      font-family: var(--font-body);
+    }
+    .landing {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      text-align: center;
+      gap: 32px;
+    }
+    .landing-wordmark {
+      font-family: var(--font-display);
+      font-size: 32px;
+      letter-spacing: 0.05em;
+    }
+    .landing-tagline {
+      color: var(--nomad-grey);
+      font-size: 14px;
+      max-width: 320px;
+      margin-top: -20px;
+    }
+    .landing-choices {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+      max-width: 320px;
+    }
+    .landing-btn {
+      display: block;
+      text-decoration: none;
+      padding: 16px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 15px;
+      border: 1px solid var(--nomad-border);
+      color: var(--nomad-white);
+      background: var(--nomad-black-elevated);
+      transition: border-color 0.15s ease, transform 0.15s ease;
+    }
+    .landing-btn:hover {
+      border-color: var(--nomad-lime);
+    }
+    .landing-btn:active {
+      transform: scale(0.98);
+    }
+    .landing-btn.primary {
+      background: var(--nomad-lime);
+      color: var(--nomad-black);
+      border-color: var(--nomad-lime);
+    }
+  </style>
+</head>
+<body>
+  <div class="landing">
+    <div>
+      <div class="landing-wordmark">NOMAD</div>
+      <p class="landing-tagline">Turn your everyday sales into a credit score you can borrow against.</p>
+    </div>
+
+    <div class="landing-choices">
+      <a class="landing-btn primary" href="../onboarding/onboarding.html">Get started as a trader</a>
+      <a class="landing-btn" href="../auth/login.html">Sign in</a>
+    </div>
+  </div>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      // Single registration point — see the note at the top of sw.js.
+      navigator.serviceWorker.register("/public/sw.js").catch((err) => {
+        console.error("Service worker registration failed", err);
+      });
+    }
+  </script>
+</body>
+</html>
