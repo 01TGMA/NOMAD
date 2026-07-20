@@ -100,7 +100,7 @@ async function loadScore(profileId) {
     .from("credit_scores")
     .select("score")
     .eq("profile_id", profileId)
-    .single();
+    .maybeSingle();
 
   setGauge(scoreRow?.score ?? 0);
 }
